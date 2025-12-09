@@ -11,7 +11,7 @@
 
   <ion-list>
     <ng-container *ngFor="let taglio of mappaTagli">
-      <ion-item button *ngIf="taglio.getQuantita() > 0">
+      <ion-item *ngIf="taglio.getQuantita() > 0">
         <ion-icon [src]="taglio.getTaglio() >= 5 ? 'assets/icon/banknote.svg' : 'assets/icon/coin.svg'"></ion-icon>
         <ion-text>{{ taglio.getTaglio() }}€ x {{ taglio.getQuantita() }}</ion-text>
       </ion-item>

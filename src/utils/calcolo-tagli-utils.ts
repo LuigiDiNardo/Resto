@@ -11,7 +11,8 @@ export class CalcoloTagliUtils {
         let mappa: MappaTaglio[] = [];
         let quantita;
         let restoTaglio = resto;
-        for (let taglio of this.tagli) {
+        let taglioUtile = totale != 0 ? this.tagli : this.tagli.filter(taglio => restoTaglio > taglio);
+        for (let taglio of taglioUtile) {
             quantita = Math.floor(restoTaglio / taglio);
             mappa.push(new MappaTaglio(taglio, quantita));
             if (quantita > 0) {
