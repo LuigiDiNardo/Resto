@@ -1,19 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="chiudi()">Cancel</ion-button>
+      <ion-button color="medium" (click)="chiudi()">Chiudi</ion-button>
     </ion-buttons>
     <ion-title>Tagli Alternativi per {{ taglio.getQuantita() * taglio.getTaglio()}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-list *ngIf="resto != 0">
-            <ion-item *ngFor="let taglio of mappaTagli">
-                <ion-content class="rowList">
-                    <ion-icon *ngIf="" src="assets/icon/banknote.svg"></ion-icon>
-                    <ion-icon *ngIf="" src="assets/icon/coin.svg"></ion-icon>
-                    <ion-text>{{taglio.getTaglio()}}€</ion-text> <ion-text>x{{taglio.getQuantita()}}</ion-text>
-                </ion-content>
-            </ion-item>
-        </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let taglio of mappaTagli">
+      <ion-content class="rowList">
+        <ion-icon *ngIf="taglio.getQuantita() > 0 && taglio.getTaglio() >= 5" src="assets/icon/banknote.svg"></ion-icon>
+        <ion-icon *ngIf="taglio.getQuantita() > 0 && taglio.getTaglio() < 5" src="assets/icon/coin.svg"></ion-icon>
+        <ion-text>{{taglio.getTaglio()}}€</ion-text> <ion-text>x{{taglio.getQuantita()}}</ion-text>
+      </ion-content>
+    </ion-item>
+  </ion-list>
 </ion-content>

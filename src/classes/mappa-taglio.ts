@@ -6,7 +6,7 @@ export class MappaTaglio {
     constructor(taglio: number, quantita: number) {
         this.taglio = taglio;
         this.quantita = quantita;
-     }
+    }
 
     setTaglio(taglio: number): void {
         this.taglio = taglio;
@@ -22,5 +22,9 @@ export class MappaTaglio {
 
     getQuantita(): number {
         return this.quantita ? this.quantita : 0;
+    }
+
+    getTotale(): number {
+        return this.quantita && this.taglio ? this.quantita * this.taglio : 0;
     }
 }

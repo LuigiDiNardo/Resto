@@ -1,22 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonItem, IonList, IonIcon, IonText, ModalController } from '@ionic/angular/standalone';
 import { MappaTaglio } from 'src/classes/mappa-taglio';
+import { CalcoloTagliUtils } from 'src/utils/calcolo-tagli-utils';
 
 @Component({
-  selector: 'app-modal-taglio',
-  standalone: true,
+  selector: 'modal-taglio',
   templateUrl: './modal-taglio.component.html',
   styleUrls: ['./modal-taglio.component.scss'],
-  imports: [ IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonItem, IonList, IonIcon, IonText ]
+  imports: [ CommonModule,
+    IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonItem, IonList, IonIcon, IonText ]
 })
 export class ModalTaglioComponent implements OnInit {
 
   @Input() taglio!: MappaTaglio;
   mappaTagli: MappaTaglio[] = [];
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private calcoloTagliUtils: CalcoloTagliUtils) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.mappaTagli = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglio.getTotale())[1];
+  }
 
   chiudi() {
       this.modalCtrl.dismiss();

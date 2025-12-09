@@ -1,0 +1,31 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Calcola Resto</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="container">
+    <ion-text>Resto da servire</ion-text><br>
+    <ion-text>{{ resto }}</ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Totale</ion-label>
+      <ion-input type="text" [(ngModel)]="totale"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Pagato</ion-label>
+      <ion-input type="text" [(ngModel)]="pagato"></ion-input>
+    </ion-item>
+    <ion-button (click)="calcola(totale, pagato)">Calcola Resto</ion-button>
+
+    <ion-list *ngIf="resto != 0">
+      <ion-item button *ngFor="let taglio of mappaTagli" (click)="apriModaleTaglioAlternativo(taglio)">
+        <ion-icon *ngIf="taglio.getQuantita() > 0 && taglio.getTaglio() >= 5" src="assets/icon/banknote.svg"></ion-icon>
+        <ion-icon *ngIf="taglio.getQuantita() > 0 && taglio.getTaglio() < 5" src="assets/icon/coin.svg"></ion-icon>
+        <ion-text>{{taglio.getTaglio()}}€</ion-text> <ion-text>x{{taglio.getQuantita()}}</ion-text>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-app>
