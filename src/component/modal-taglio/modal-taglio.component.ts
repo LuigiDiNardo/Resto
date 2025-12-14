@@ -8,8 +8,8 @@ import { CalcoloTagliUtils } from 'src/utils/calcolo-tagli-utils';
   selector: 'modal-taglio',
   templateUrl: './modal-taglio.component.html',
   styleUrls: ['./modal-taglio.component.scss'],
-  imports: [ CommonModule,
-    IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonItem, IonList, IonIcon, IonText ]
+  imports: [CommonModule,
+    IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonItem, IonList, IonIcon, IonText]
 })
 export class ModalTaglioComponent implements OnInit {
 
@@ -19,10 +19,15 @@ export class ModalTaglioComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private calcoloTagliUtils: CalcoloTagliUtils) { }
 
   ngOnInit() {
-    this.mappaTagli = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglio.getTotale())[1];
+    this.mappaTagli = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglio.getTaglio())[1].map(entry => new MappaTaglio(this.recuperaTaglio(this.taglio.getTaglio())[0], entry.getQuantita() * this.taglio.getQuantita()));
   }
 
+  recuperaTaglio(taglio: number): number[] {
+    return this.calcoloTagliUtils.tagli.filter(t => taglio > t);
+  }
   chiudi() {
-      this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 }
+
+
