@@ -10,13 +10,13 @@ export class CalcoloTagliUtils {
         let resto = Number((pagato - totale).toFixed(2));
         let mappa: MappaTaglio[] = [];
         let quantita;
-        let restoTaglio = resto;
-        let taglioUtile = totale != 0 ? this.tagli : this.tagli.filter(taglio => restoTaglio > taglio);
+        let taglioResto = resto;
+        let taglioUtile = totale != 0 ? this.tagli : this.tagli.filter(taglio => taglioResto > taglio);
         for (let taglio of taglioUtile) {
-            quantita = Math.floor(restoTaglio / taglio);
+            quantita = Math.floor(taglioResto / taglio);
             mappa.push(new MappaTaglio(taglio, quantita));
             if (quantita > 0) {
-                restoTaglio = restoTaglio % taglio;
+                taglioResto =  Number((taglioResto - (taglio*quantita)).toFixed(2));
             };
         }
         return [resto, mappa];

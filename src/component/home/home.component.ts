@@ -28,10 +28,10 @@ export class HomeComponent {
     this.mappaTagli = res[1];
   }
 
-  async apriModaleTaglioAlternativo(taglio: any) {
+  async apriModaleTaglioAlternativo(taglioInput: any) {
     const modal = await this.modalCtrl.create({
       component: ModalTaglioComponent,
-      componentProps: { taglio },
+      componentProps: { taglioInput },
     });
     modal.present();
   }

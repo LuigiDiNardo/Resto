@@ -13,18 +13,20 @@ import { CalcoloTagliUtils } from 'src/utils/calcolo-tagli-utils';
 })
 export class ModalTaglioComponent implements OnInit {
 
-  @Input() taglio!: MappaTaglio;
+  @Input() taglioInput!: MappaTaglio;
   mappaTagli: MappaTaglio[] = [];
 
   constructor(private modalCtrl: ModalController, private calcoloTagliUtils: CalcoloTagliUtils) { }
 
   ngOnInit() {
-    this.mappaTagli = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglio.getTaglio())[1].map(entry => new MappaTaglio(this.recuperaTaglio(this.taglio.getTaglio())[0], entry.getQuantita() * this.taglio.getQuantita()));
+    const mappaTagliUtili = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglioInput.getTaglio())[1];
+    this.mappaTagli = mappaTagliUtili.map(entry => new MappaTaglio(entry.getTaglio(), entry.getQuantita() * this.taglioInput.getQuantita()));
   }
 
   recuperaTaglio(taglio: number): number[] {
     return this.calcoloTagliUtils.tagli.filter(t => taglio > t);
   }
+
   chiudi() {
     this.modalCtrl.dismiss();
   }
