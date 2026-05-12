@@ -6,9 +6,20 @@
   </ion-header>
 
   <ion-content class="container">
-    
-    <ion-text>Resto da servire</ion-text><br>
-    <ion-text>{{ resto }}</ion-text>
+
+    <ng-container *ngIf="resto != null && resto > 0">
+      <ion-text>Resto da servire</ion-text><br>
+      <ion-text>{{ resto }}</ion-text>
+    </ng-container>
+
+    <ion-alert [isOpen]="resto !== null && resto < 0" 
+      header="Attenzione"
+      message="Il resto ottenuto risulta essere inferiore a 0!
+        Inserisci gli importi correttamente."
+      [buttons]="['Chiudi']"
+      (didDismiss)="cancella()">
+    </ion-alert>
+
 
     <ion-item>
       <ion-label position="floating">Totale</ion-label>
@@ -20,8 +31,9 @@
       <ion-input type="text" [(ngModel)]="pagato"></ion-input>
     </ion-item>
     <ion-button (click)="calcola(totale, pagato)">Calcola Resto</ion-button>
+    <ion-button (click)="cancella()">Cancella</ion-button>
 
-    <ion-list *ngIf="resto != 0">
+    <ion-list *ngIf="resto != null && resto > 0">
       <ng-container *ngFor="let taglio of mappaTagli">
         <ion-item button *ngIf="taglio.getQuantita() > 0" (click)="apriModaleTaglioAlternativo(taglio)">
           <ion-icon [src]="taglio.getTaglio() >= 5 ? 'assets/icon/banknote.svg' : 'assets/icon/coin.svg'"></ion-icon>
