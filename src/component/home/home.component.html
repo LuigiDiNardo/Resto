@@ -1,43 +1,52 @@
 <ion-app>
-  <ion-header>
-    <ion-toolbar>
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
       <ion-title>Calcola Resto</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="container">
+  <ion-content class="ion-padding flat-calculator-content">
 
-    <ng-container *ngIf="resto != null && resto > 0">
-      <ion-text>Resto da servire</ion-text><br>
-      <ion-text>{{ resto }}</ion-text>
-    </ng-container>
+    <div class="result-box" *ngIf="resto != null && resto > 0">
+      <div class="subtitle">Resto da servire</div>
+      <div class="main-amount">€{{ resto }}</div>
+    </div>
 
-    <ion-alert [isOpen]="resto !== null && resto < 0" 
-      header="Attenzione"
-      message="Il resto ottenuto risulta essere inferiore a 0!
-        Inserisci gli importi correttamente."
-      [buttons]="['Chiudi']"
-      (didDismiss)="cancella()">
+    <ion-alert [isOpen]="resto !== null && resto < 0" header="Attenzione"
+      message="Il resto ottenuto risulta essere inferiore a 0! Inserisci gli importi correttamente."
+      [buttons]="['Chiudi']" (didDismiss)="cancella()">
     </ion-alert>
 
+    <div class="inputs-container">
+      <ion-item lines="none" class="flat-item">
+        <ion-label position="stacked">Totale</ion-label>
+        <ion-input type="number" [(ngModel)]="totale" placeholder="0.00"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Totale</ion-label>
-      <ion-input type="text" [(ngModel)]="totale"></ion-input>
-    </ion-item>
+      <ion-item lines="none" class="flat-item">
+        <ion-label position="stacked">Pagato</ion-label>
+        <ion-input type="number" [(ngModel)]="pagato" placeholder="0.00"></ion-input>
+      </ion-item>
+    </div>
 
-    <ion-item>
-      <ion-label position="floating">Pagato</ion-label>
-      <ion-input type="text" [(ngModel)]="pagato"></ion-input>
-    </ion-item>
-    <ion-button (click)="calcola(totale, pagato)">Calcola Resto</ion-button>
-    <ion-button (click)="cancella()">Cancella</ion-button>
+    <ion-grid class="ion-no-padding buttons-grid">
+      <ion-row>
+        <ion-col size="6" class="ion-padding-end">
+          <ion-button expand="block" class="btn-primary-flat" (click)="calcola(totale, pagato)">Resto</ion-button>
+        </ion-col>
+        <ion-col size="6" class="ion-padding-start">
+          <ion-button expand="block" fill="outline" class="btn-outline-flat" (click)="cancella()">Cancella</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-list *ngIf="resto != null && resto > 0">
+    <ion-list lines="none" class="flat-list" *ngIf="resto != null && resto > 0">
       <ng-container *ngFor="let taglio of mappaTagli">
-        <ion-item button *ngIf="taglio.getQuantita() > 0" (click)="apriModaleTaglioAlternativo(taglio)">
-          <ion-icon [src]="taglio.getTaglio() >= 5 ? 'assets/icon/banknote.svg' : 'assets/icon/coin.svg'"></ion-icon>
-          <ion-text>{{ taglio.getTaglio() }}€ x {{ taglio.getQuantita() }}</ion-text>
+        <ion-item class="flat-list-item" detail="false" button *ngIf="taglio.getQuantita() > 0"
+          (click)="apriModaleTaglioAlternativo(taglio)">
+          <ion-icon slot="start" [src]="taglio.getTaglio() >= 5 ? 'assets/icon/banknote.svg' : 'assets/icon/coin.svg'"
+            class="taglio-icon"></ion-icon>
+          <ion-label class="taglio-text">{{ taglio.getTaglio() }}€ x {{ taglio.getQuantita() }}</ion-label>
         </ion-item>
       </ng-container>
     </ion-list>

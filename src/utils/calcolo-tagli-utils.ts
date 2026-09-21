@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MappaTaglio } from "src/classes/mappa-taglio";
+import { MappaTaglio } from "@src/classes/mappa-taglio";
 
 @Injectable({ providedIn: 'root' })
 export class CalcoloTagliUtils {

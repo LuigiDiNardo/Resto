@@ -1,0 +1,104 @@
+// Sfondo pulito
+.flat-calculator-content {
+  --background: #f4f5f8;
+}
+
+// Box del resto in evidenza ma senza ombre
+.result-box {
+  background: #ffffff;
+  border: 1px solid #d7d8dc;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .subtitle {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .main-amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1f2937;
+  }
+}
+
+// Container input
+.inputs-container {
+  margin-bottom: 16px;
+
+  .flat-item {
+    background: #ffffff;
+    border: 1px solid #d7d8dc;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    --padding-start: 14px;
+    --min-height: 56px;
+
+    ion-label {
+      color: #666666 !important;
+      font-size: 12px !important;
+      font-weight: 500;
+    }
+
+    ion-input {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+  }
+}
+
+// Bottoni flat
+.buttons-grid {
+  margin-bottom: 24px;
+
+  .btn-primary-flat {
+    --background: #2563eb;
+    --border-radius: 10px;
+    font-weight: 600;
+    height: 48px;
+    box-shadow: none; // Niente ombre
+  }
+
+  .btn-outline-flat {
+    --border-color: #d7d8dc;
+    --color: #374151;
+    --border-radius: 10px;
+    font-weight: 600;
+    height: 48px;
+    background: #ffffff;
+  }
+}
+
+// Lista tagli flat
+.flat-list {
+  background: transparent;
+  padding: 0;
+
+  .flat-list-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    --padding-start: 16px;
+    --min-height: 50px;
+
+    .taglio-icon {
+      font-size: 22px;
+      margin-right: 12px;
+      color: #4b5563;
+    }
+
+    .taglio-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+  }
+
+  
+}

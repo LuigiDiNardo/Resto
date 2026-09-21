@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonItem, IonList, IonIcon, IonText, ModalController } from '@ionic/angular/standalone';
-import { MappaTaglio } from 'src/classes/mappa-taglio';
-import { CalcoloTagliUtils } from 'src/utils/calcolo-tagli-utils';
+import { MappaTaglio } from '@src/classes/mappa-taglio';
+import { CalcoloTagliUtils } from '@src/utils/calcolo-tagli-utils';
 
 @Component({
   selector: 'modal-taglio',

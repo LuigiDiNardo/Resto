@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MappaTaglio } from 'src/classes/mappa-taglio';
-import { CalcoloTagliUtils } from 'src/utils/calcolo-tagli-utils';
 import { ModalTaglioComponent } from '../modal-taglio/modal-taglio.component';
-import { ModalController, IonContent, IonText, IonLabel, IonItem, IonInput, IonButton, IonList, IonIcon, IonHeader, IonToolbar, IonTitle, IonApp, IonAlert } from '@ionic/angular/standalone';
+import { ModalController, IonContent, IonGrid, IonLabel, IonItem, IonInput, IonButton, IonList, IonIcon, IonHeader, IonToolbar, IonTitle, IonApp, IonAlert, IonCol, IonRow } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CalcoloTagliUtils } from '@src/utils/calcolo-tagli-utils';
+import { MappaTaglio } from '@src/classes/mappa-taglio';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [IonContent, IonText, IonLabel, IonItem, IonInput, IonButton, IonList, IonIcon, IonAlert,
+  imports: [IonContent, IonGrid, IonLabel, IonItem, IonInput, IonButton, IonList, IonIcon, IonAlert, IonCol, IonRow,
     FormsModule, CommonModule, IonHeader, IonToolbar, IonTitle, IonApp],
 })
 export class HomeComponent {
