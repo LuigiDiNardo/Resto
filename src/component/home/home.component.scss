@@ -3,6 +3,57 @@
   --background: #f4f5f8;
 }
 
+// Mostra il risultato e i tagli con un effetto balloon quando *ngIf li inserisce nel DOM.
+.result-box,
+.flat-list {
+  animation: result-balloon-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.result-pop-out {
+  animation: result-pop-out 260ms ease-in both !important;
+}
+
+@keyframes result-pop-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes result-balloon-in {
+  from {
+    opacity: 0.7;
+    transform: translateY(8px) scale(0.92);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result-box,
+  .flat-list {
+    animation: none;
+    transform: none;
+  }
+
+  .result-pop-out {
+    animation: none !important;
+  }
+}
+
 // Box del resto in evidenza ma senza ombre
 .result-box {
   background: #ffffff;

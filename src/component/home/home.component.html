@@ -7,7 +7,7 @@
 
   <ion-content class="ion-padding flat-calculator-content">
 
-    <div class="result-box" *ngIf="resto != null && resto > 0">
+    <div class="result-box" [class.result-pop-out]="isCancellazioneInCorso" *ngIf="resto != null && resto > 0">
       <div class="subtitle">Resto da servire</div>
       <div class="main-amount">€{{ resto }}</div>
     </div>
@@ -40,7 +40,8 @@
       </ion-row>
     </ion-grid>
 
-    <ion-list lines="none" class="flat-list" *ngIf="resto != null && resto > 0">
+    <ion-list lines="none" class="flat-list" [class.result-pop-out]="isCancellazioneInCorso"
+      *ngIf="resto != null && resto > 0">
       <ng-container *ngFor="let taglio of mappaTagli">
         <ion-item class="flat-list-item" detail="false" button *ngIf="taglio.getQuantita() > 0"
           (click)="apriModaleTaglioAlternativo(taglio)">

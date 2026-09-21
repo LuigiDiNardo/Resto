@@ -19,6 +19,8 @@ export class HomeComponent {
   totale?: number | null;
   pagato?: number | null;
   mappaTagli: MappaTaglio[] = [];
+  isCancellazioneInCorso = false;
+  private timeoutCancellazione?: ReturnType<typeof setTimeout>;
 
 
   constructor(private modalCtrl: ModalController, private calcoloTagliUtils: CalcoloTagliUtils) { }
@@ -30,9 +32,30 @@ export class HomeComponent {
   }
 
   cancella() {
+    if (this.resto != null && this.resto > 0) {
+      if (this.timeoutCancellazione) {
+        clearTimeout(this.timeoutCancellazione);
+      }
+
+      this.isCancellazioneInCorso = true;
+      this.timeoutCancellazione = setTimeout(() => this.ripristinaCalcolatrice(), 260);
+      return;
+    }
+
+    this.ripristinaCalcolatrice();
+  }
+
+  private ripristinaCalcolatrice() {
+    if (this.timeoutCancellazione) {
+      clearTimeout(this.timeoutCancellazione);
+      this.timeoutCancellazione = undefined;
+    }
+
+    this.isCancellazioneInCorso = false;
     this.resto = null;
     this.totale = null;
     this.pagato = null;
+    this.mappaTagli = [];
   }
 
   async apriModaleTaglioAlternativo(taglioInput: any) {
