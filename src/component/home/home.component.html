@@ -8,7 +8,7 @@
   <ion-content class="ion-padding flat-calculator-content">
 
     <div class="result-box" [class.result-pop-out]="isCancellazioneInCorso" *ngIf="resto != null && resto > 0">
-      <div class="subtitle">Resto da servire</div>
+      <div class="subtitle">Resto da fornire</div>
       <div class="main-amount">€{{ resto }}</div>
     </div>
 
@@ -19,12 +19,12 @@
 
     <div class="inputs-container">
       <ion-item lines="none" class="flat-item">
-        <ion-label position="stacked">Totale</ion-label>
+        <ion-label position="stacked">Totale da saldare</ion-label>
         <ion-input type="number" [(ngModel)]="totale" placeholder="0.00"></ion-input>
       </ion-item>
 
       <ion-item lines="none" class="flat-item">
-        <ion-label position="stacked">Pagato</ion-label>
+        <ion-label position="stacked">Saldato dal cliente</ion-label>
         <ion-input type="number" [(ngModel)]="pagato" placeholder="0.00"></ion-input>
       </ion-item>
     </div>

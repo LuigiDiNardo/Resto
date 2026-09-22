@@ -6,18 +6,20 @@ export class CalcoloTagliUtils {
 
     readonly tagli: number[] = [500, 200, 100, 50, 20, 10, 5, 2, 1, 0.50, 0.20, 0.10, 0.05];
 
-    calcolaTagliEMappa(totale: any, pagato: any): [number, MappaTaglio[]] {
+    calcolaTagliEMappa(totale: any, pagato: any, isFromModal: boolean): [number, MappaTaglio[]] {
         let resto = Number((pagato - totale).toFixed(2));
         let mappa: MappaTaglio[] = [];
         let quantita;
         let taglioResto = resto;
-        //let taglioUtile = totale != 0 ? this.tagli : this.tagli.filter(taglio => taglioResto > taglio);
-        let taglioUtile = this.tagli.filter(taglio => taglioResto > taglio);
+
+        let taglioUtile = isFromModal ?
+            this.tagli.filter(taglio => taglioResto > taglio) :
+            this.tagli.filter(taglio => taglioResto >= taglio);
         for (let taglio of taglioUtile) {
             quantita = Math.floor(taglioResto / taglio);
             mappa.push(new MappaTaglio(taglio, quantita));
             if (quantita > 0) {
-                taglioResto =  Number((taglioResto - (taglio*quantita)).toFixed(2));
+                taglioResto = Number((taglioResto - (taglio * quantita)).toFixed(2));
             };
         }
         return [resto, mappa];

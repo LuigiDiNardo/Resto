@@ -19,7 +19,7 @@ export class ModalTaglioComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private calcoloTagliUtils: CalcoloTagliUtils) { }
 
   ngOnInit() {
-    const mappaTagliUtili = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglioInput.getTaglio())[1];
+    const mappaTagliUtili = this.calcoloTagliUtils.calcolaTagliEMappa(0, this.taglioInput.getTaglio(), true)[1];
     this.mappaTagli = mappaTagliUtili.map(entry => new MappaTaglio(entry.getTaglio(), entry.getQuantita() * this.taglioInput.getQuantita()));
   }
 

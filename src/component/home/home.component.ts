@@ -26,7 +26,7 @@ export class HomeComponent {
   constructor(private modalCtrl: ModalController, private calcoloTagliUtils: CalcoloTagliUtils) { }
 
   calcola(totale: any, pagato: any) {
-    let res: [number, MappaTaglio[]] = this.calcoloTagliUtils.calcolaTagliEMappa(totale, pagato);
+    let res: [number, MappaTaglio[]] = this.calcoloTagliUtils.calcolaTagliEMappa(totale, pagato, false);
     this.resto = res[0];
     this.mappaTagli = res[1];
   }
